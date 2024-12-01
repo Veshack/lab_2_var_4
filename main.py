@@ -1,5 +1,5 @@
-def finder(author_name):  # Это поисковик. После того как в консоли вывелось все остальное,
-    for book_i in books:  # нужно ввести имя автора и он выведет его книги
+def finder(author_name):  # Это поиск по имени автора, после вывода заданий в консоли
+    for book_i in books:  
         if book_i[2].lower() == author_name.lower():
             if int(book_i[6]) < 200:
                 return ' '.join(book_i)
@@ -12,7 +12,7 @@ with open('books-en.csv') as f:
     cnt_long_names = 0
     authors = set()
 
-    for i in semi_ready_list:  # Тут составляю множество издателей и число книг по длинному названию
+    for i in semi_ready_list:  # Составляю множество с длинными названиями
         if '&amp;' in i:
             i = i.replace('&amp;', '&')
         book = i.split(';')
@@ -29,7 +29,7 @@ with open('books-en.csv') as f:
     books_dictionary = dict(zip(names, downloadings))
     the_most_popular_books = sorted(books_dictionary.items(), key=lambda item: item[1], reverse=True)
     
-    biblio = open('bibliographic_list.txt', 'w')  # Здесь формирование библиографического списка
+    biblio = open('bibliographic_list.txt', 'w')  # Генератор бблиографических ссылок
     for i in range(20):
         book = books[i]
         biblio.write(str(i + 1) + ". ")
